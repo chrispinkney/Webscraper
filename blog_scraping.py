@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from csv import writer
 
-location = "C:\\Users\\Chris\\Desktop\\The Modern Python 3 Bootcamp\\Section 32\\blog_data.csv" #Change me if required, too lazy to figure out current dir ./
+location = "./blog_data.csv" #Change me if required, too lazy to figure out current dir ./
 
 # Creates a request from the hipster SF bootcamp's front page URL
 req = requests.get("https://www.rithmschool.com/blog")
