@@ -1,8 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 from csv import writer
+import os
 
-location = "C:\\Users\\Chris\\Desktop\\result.csv" #Change as required, unless your windows user dir name is also Chris
+location = (os.path.dirname(os.path.realpath(__file__)) + "\\results.csv")
 
 # Creates a request from the hipster SF bootcamp's front page URL
 req = requests.get("https://www.rithmschool.com/blog")
@@ -12,7 +13,7 @@ soup = BeautifulSoup(req.text, "html.parser")
 
 # Finds all article tags for scraping
 articles = soup.find_all("article")
-#print(articles)
+#print(articles) #testing
 
 with open(location, "w") as csv_file:
     csv_writer = writer(csv_file)
@@ -24,5 +25,6 @@ with open(location, "w") as csv_file:
         title = a_tag.get_text()
         url = a_tag["href"]
         date = article.find("time")["datetime"]
-        #print(title,url,date)
+        #print(title,url,date) #testing
         csv_writer.writerow([title,url,date])
+print(f"Finished! Results saved to {location}")
